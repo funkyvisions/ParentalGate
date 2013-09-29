@@ -83,21 +83,28 @@ parentalgate.show = function(scene)
 		return
 	end
 	
-	-- otherwise show the parental gate ui
+	-- otherwise lets show the parental gate ui
 	
 	settings = {}
+	local age = 13
 	
-	local age = 0
-
+	-- scale the dialog so that it looks the same on all devices (via group)
+	
+	local scale = display.actualContentWidth / 320
 	local dialogGroup = display.newGroup()
+	dialogGroup:scale(scale, scale)
 	
+ 	-- create a dialog that almost fills the width (compenstate for scaling when positioning)
+ 	
 	local dialog = display.newRoundedRect(dialogGroup, 0, 0, 300, 200, 12)
 	dialog:setReferencePoint(display.CenterReferencePoint)
-	dialog.x = _W/2
-	dialog.y = _H/2
+	dialog.x = (_W/2) / scale
+	dialog.y = (_H/2) / scale
 	dialog.strokeWidth = 3
 	dialog:setFillColor(255,255,255)
 	dialog:setStrokeColor(0,0,0)
+	
+	-- position all children relative to the top of the dialog
 	
 	local top = dialog.y - dialog.height/2
 	
@@ -119,18 +126,20 @@ parentalgate.show = function(scene)
 	text3.y = top + 180
 	text3:setTextColor(0)
 
+	-- every time the stepper is pressed recalculate the age
+
 	local function onPress(e)
-		text2.text = e.value
 		age = e.value
+		text2.text = age
 	end
 	
 	local stepper = widget.newStepper
 	{
 	    minimumValue = 1,
 	    maximumValue = 100,
-	    initialValue = 13,
-	    changeSpeedAtIncrement=2,
-	    timerIncrementSpeed=500,
+	    initialValue = age,
+	    changeSpeedAtIncrement = 2,
+	    timerIncrementSpeed = 500,
 	    onPress = onPress
 	}
 	stepper:setReferencePoint(display.CenterReferencePoint)
@@ -142,10 +151,6 @@ parentalgate.show = function(scene)
 	-- proceed to the specified scene
 	
 	local function setAge(e)
-		
-		if (age == 0) then
-			age = 13
-		end
 		
 		settings.age = age
 		saveTable(settings)

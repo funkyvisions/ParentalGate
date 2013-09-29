@@ -48,7 +48,7 @@ function scene:createScene( event )
 	adultbutton.x = _W/2
 	adultbutton.y = _H/2 + 25
 	
-	-- if they are under age 12 then hide the adult button
+	-- if they are under age 13 then hide the adult button
 	
 	local age = parentalgate.age()
 	
