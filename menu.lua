@@ -34,7 +34,7 @@ function scene:createScene( event )
 		width = 120,
 		height = 20
 	}
-	kidbutton:setReferencePoint(display.CenterReferencePoint)
+	kidbutton.anchorX = 0.5; kidbutton.anchorY = 0.5;
 	kidbutton.x = _W/2
 	kidbutton.y = _H/2 - 25
 
@@ -44,7 +44,7 @@ function scene:createScene( event )
 		width = 120,
 		height = 20
 	}
-	adultbutton:setReferencePoint(display.CenterReferencePoint)
+	adultbutton.anchorX = 0.5; adultbutton.anchorY = 0.5;
 	adultbutton.x = _W/2
 	adultbutton.y = _H/2 + 25
 	

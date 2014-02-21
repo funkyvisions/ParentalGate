@@ -97,11 +97,11 @@ parentalgate.show = function(scene)
  	-- create a dialog that almost fills the width (compenstate for scaling when positioning)
  	
 	local dialog = display.newRoundedRect(dialogGroup, 0, 0, 300, 200, 12)
-	dialog:setReferencePoint(display.CenterReferencePoint)
+	dialog.anchorX = 0.5; dialog.anchorY = 0.5;
 	dialog.x = (_W/2) / scale
 	dialog.y = (_H/2) / scale
 	dialog.strokeWidth = 3
-	dialog:setFillColor(255,255,255)
+	dialog:setFillColor(1,1,1)
 	dialog:setStrokeColor(0,0,0)
 	
 	-- position all children relative to the top of the dialog
@@ -109,22 +109,22 @@ parentalgate.show = function(scene)
 	local top = dialog.y - dialog.height/2
 	
 	local text1 = display.newText(dialogGroup, "How old are you?", 0, 0, native.systemFontBold, 24)
-	text1:setReferencePoint(display.CenterReferencePoint)
+	text1.anchorX = 0.5; text1.anchorY = 0.5;
 	text1.x = dialog.x
 	text1.y = top + 20
-	text1:setTextColor(0)
+	text1:setFillColor(0)
 	
 	local text2 = display.newText(dialogGroup, "13", 0, 0, native.systemFontBold, 24)
-	text2:setReferencePoint(display.CenterReferencePoint)
+	text2.anchorX = 0.5; text2.anchorY = 0.5;
 	text2.x = dialog.x
 	text2.y = top + 60
-	text2:setTextColor(0)
+	text2:setFillColor(0)
 	
 	local text3 = display.newText(dialogGroup, "Your age will affect what menu buttons you see", 0, 0, native.systemFont, 10)
-	text3:setReferencePoint(display.CenterReferencePoint)
+	text3.anchorX = 0.5; text3.anchorY = 0.5;
 	text3.x = dialog.x
 	text3.y = top + 180
-	text3:setTextColor(0)
+	text3:setFillColor(0)
 
 	-- every time the stepper is pressed recalculate the age
 
@@ -142,7 +142,7 @@ parentalgate.show = function(scene)
 	    timerIncrementSpeed = 500,
 	    onPress = onPress
 	}
-	stepper:setReferencePoint(display.CenterReferencePoint)
+	stepper.anchorX = 0.5; stepper.anchorY = 0.5;
 	stepper.x = dialog.x
 	stepper.y = top + 100
 	dialogGroup:insert(stepper)
@@ -168,7 +168,7 @@ parentalgate.show = function(scene)
 		height = 20,
 		onRelease = setAge
 	}
-	button:setReferencePoint(display.CenterReferencePoint)
+	button.anchorX = 0.5; button.anchorY = 0.5;
 	button.x = dialog.x
 	button.y = top + 145
 	dialogGroup:insert(button)
